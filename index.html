@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="el" data-lang="el" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Δημήτριος Γουσόπουλος · Τεχνητή Νοημοσύνη & Ποσοτικές Μέθοδοι</title>
+<meta name="description" content="Δημήτριος Γουσόπουλος (Dimitrios Gousopoulos) — Μεταδιδακτορικός ερευνητής στην Τεχνητή Νοημοσύνη και τις Ποσοτικές Μεθόδους, Πάντειο Πανεπιστήμιο. Postdoctoral researcher in AI and Quantitative Methods, Panteion University.">
+<meta name="author" content="Dimitrios Gousopoulos">
+<meta property="og:title" content="Δημήτριος Γουσόπουλος · Dimitrios Gousopoulos">
+<meta property="og:description" content="Τεχνητή Νοημοσύνη, εκπαιδευτική τεχνολογία και ποσοτικές μέθοδοι · AI, educational technology and quantitative methods">
+<meta property="og:type" content="profile">
+<meta name="color-scheme" content="light dark">
+<script>
+  (function(){
+    var d=document.documentElement,t=null,l=null;
+    try{t=localStorage.getItem('theme');l=localStorage.getItem('lang')}catch(e){}
+    try{var q=new URLSearchParams(location.search).get('lang');if(q==='en'||q==='el')l=q}catch(e){}
+    if(t!=='dark'&&t!=='light'){t=(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light'}
+    if(l!=='en'&&l!=='el'){l='el'}
+    d.setAttribute('data-theme',t);d.setAttribute('data-lang',l);d.setAttribute('lang',l);
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,600;1,7..72,400;1,7..72,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Dimitrios Gousopoulos",
+  "alternateName": "Δημήτριος Γουσόπουλος",
+  "jobTitle": "Postdoctoral Researcher in Artificial Intelligence and Quantitative Methods",
+  "affiliation": {"@type": "CollegeOrUniversity", "name": "Panteion University of Social and Political Sciences"},
+  "alumniOf": {"@type": "CollegeOrUniversity", "name": "National and Kapodistrian University of Athens"},
+  "sameAs": [
+    "https://scholar.google.com/citations?user=qLZJdUYAAAAJ",
+    "https://github.com/dimgouso"
+  ]
+}
+</script>
+<style>
+  :root{
+    --paper:#f6f3ec;
+    --paper-2:#efeadf;
+    --ink:#1d1b18;
+    --ink-2:#4a463f;
+    --ink-3:#7a746a;
+    --rule:#d9d2c3;
+    --accent:#1f5f5b;
+    --accent-2:#b4532a;
+    --serif:"Literata", Georgia, "Times New Roman", serif;
+    --sans:"Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+    --wrap:1120px;
+    color-scheme:light;
+  }
+  html[data-theme="dark"]{
+    --paper:#151412;
+    --paper-2:#1f1d1a;
+    --ink:#ece6da;
+    --ink-2:#c2baab;
+    --ink-3:#8e8678;
+    --rule:#33302a;
+    --accent:#7cc2b8;
+    --accent-2:#e3925f;
+    color-scheme:dark;
+  }
+  /* Language switching: hide the other language */
+  html[data-lang="el"] [lang="en"],
+  html[data-lang="en"] [lang="el"]{display:none !important}
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;scroll-padding-top:84px}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;transition:background-color .25s,color .25s}
+  a{color:inherit;text-decoration-color:color-mix(in srgb,var(--accent) 45%,transparent);text-underline-offset:3px;text-decoration-thickness:1px}
+  a:hover{color:var(--accent);text-decoration-color:var(--accent)}
+  :focus-visible{outline:2px solid var(--accent-2);outline-offset:3px;border-radius:2px}
+  .wrap{max-width:var(--wrap);margin:0 auto;padding:0 28px}
+  .skip{position:absolute;left:-999px;top:12px;background:var(--ink);color:var(--paper);padding:8px 14px;z-index:100;border-radius:4px}
+  .skip:focus{left:12px}
+
+  /* Header */
+  header.site{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:saturate(140%) blur(10px);-webkit-backdrop-filter:saturate(140%) blur(10px);border-bottom:1px solid transparent;transition:border-color .2s}
+  header.site.scrolled{border-bottom-color:var(--rule)}
+  .bar{display:flex;align-items:center;justify-content:space-between;gap:20px;height:68px}
+  .brand{font-family:var(--serif);font-weight:500;font-size:1.12rem;text-decoration:none;letter-spacing:-.01em;white-space:nowrap}
+  .brand i{color:var(--ink-3);font-weight:400}
+  .right{display:flex;align-items:center;gap:22px}
+  nav.menu ul{list-style:none;margin:0;padding:0;display:flex;gap:24px}
+  nav.menu a{text-decoration:none;font-size:.93rem;color:var(--ink-2)}
+  nav.menu a:hover{color:var(--accent)}
+  .toggles{display:flex;align-items:center;gap:8px}
+  .seg{display:inline-flex;border:1px solid var(--rule);border-radius:999px;padding:2px;background:var(--paper)}
+  .seg button{font:500 .76rem var(--mono);letter-spacing:.05em;border:0;background:none;color:var(--ink-3);padding:4px 9px;border-radius:999px;cursor:pointer}
+  .seg button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+  .icon-btn{width:32px;height:32px;display:inline-grid;place-items:center;border:1px solid var(--rule);border-radius:50%;background:var(--paper);color:var(--ink-2);cursor:pointer;padding:0}
+  .icon-btn:hover,.seg button:hover{color:var(--accent)}
+  .seg button[aria-pressed="true"]:hover{color:var(--paper)}
+  .icon-btn svg{width:16px;height:16px}
+  html[data-theme="light"] .i-sun{display:none}
+  html[data-theme="dark"] .i-moon{display:none}
+  .menu-btn{display:none;background:none;border:1px solid var(--rule);border-radius:999px;padding:5px 13px;font:500 .86rem var(--sans);color:var(--ink);cursor:pointer}
+
+  /* Hero */
+  .hero{padding:72px 0 64px;display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:64px;align-items:center}
+  .kicker{font-family:var(--mono);font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin:0 0 22px}
+  h1{font-family:var(--serif);font-weight:500;font-size:clamp(2.3rem,5.2vw,3.9rem);line-height:1.08;letter-spacing:-.025em;margin:0 0 26px}
+  h1 em{font-style:italic;color:var(--accent-2);font-weight:400}
+  .lede{font-size:1.1rem;color:var(--ink-2);max-width:60ch;margin:0 0 30px}
+  .actions{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:26px}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border-radius:999px;font-weight:500;font-size:.95rem;text-decoration:none;border:1px solid var(--ink);transition:background .15s,color .15s}
+  .btn.primary{background:var(--ink);color:var(--paper)}
+  .btn.primary:hover{background:var(--accent);border-color:var(--accent);color:var(--paper)}
+  .btn.ghost:hover{background:var(--ink);color:var(--paper)}
+  .profiles{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px 22px;font-size:.92rem}
+  .profiles a{color:var(--ink-2)}
+  .portrait{margin:0;justify-self:end}
+  .portrait img{display:block;width:260px;height:260px;object-fit:cover;object-position:50% 20%;border-radius:4px;filter:grayscale(12%) contrast(1.02);box-shadow:14px 14px 0 var(--paper-2),14px 14px 0 1px var(--rule)}
+  html[data-theme="dark"] .portrait img{filter:grayscale(15%) brightness(.92)}
+  .portrait figcaption{font-family:var(--mono);font-size:.74rem;color:var(--ink-3);margin-top:24px;letter-spacing:.03em}
+
+  /* Sections */
+  section.block{border-top:1px solid var(--rule);padding:72px 0}
+  .shead{display:grid;grid-template-columns:120px minmax(0,1fr) auto;gap:24px;align-items:baseline;margin-bottom:40px}
+  .num{font-family:var(--mono);font-size:.82rem;color:var(--accent);letter-spacing:.05em}
+  .num b{display:block;font-weight:500;color:var(--ink-3);text-transform:uppercase;font-size:.74rem;margin-top:4px}
+  h2{font-family:var(--serif);font-weight:500;font-size:clamp(1.7rem,3vw,2.3rem);letter-spacing:-.02em;line-height:1.15;margin:0}
+  .more{font-size:.9rem;white-space:nowrap;color:var(--ink-2)}
+  .body{margin-left:144px}
+  h3{font-family:var(--serif);font-weight:500;font-size:1.22rem;line-height:1.3;letter-spacing:-.01em;margin:0 0 6px}
+
+  /* Research lines */
+  .lines{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:0 48px}
+  .lines li{display:grid;grid-template-columns:40px 1fr;padding:22px 0;border-bottom:1px solid var(--rule)}
+  .lines li:nth-last-child(-n+2){border-bottom:none}
+  .roman{font-family:var(--serif);font-style:italic;color:var(--accent-2);font-size:1.05rem;padding-top:1px}
+  .lines p{margin:0;color:var(--ink-2);font-size:.96rem}
+
+  /* Entries (teaching, projects) */
+  .entries{list-style:none;margin:0;padding:0}
+  .entry{display:grid;grid-template-columns:150px minmax(0,1fr);gap:24px;padding:22px 0;border-bottom:1px solid var(--rule)}
+  .entry:last-child{border-bottom:none}
+  .date{font-family:var(--mono);font-size:.8rem;color:var(--ink-3);padding-top:5px;letter-spacing:.02em}
+  .meta{color:var(--ink-2);font-size:.95rem;margin:0}
+  .meta + .meta{margin-top:4px}
+  .tag{display:inline-block;font-family:var(--mono);font-size:.72rem;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);border:1px solid color-mix(in srgb,var(--accent) 35%,transparent);border-radius:999px;padding:1px 9px;margin-left:8px;vertical-align:2px}
+
+  /* Publications */
+  .pubs{list-style:none;margin:0;padding:0}
+  .pub{display:grid;grid-template-columns:70px minmax(0,1fr);gap:24px;padding:20px 0;border-bottom:1px solid var(--rule)}
+  .pub:last-child{border-bottom:none}
+  .pub .yr{font-family:var(--mono);font-size:.85rem;color:var(--ink-3);padding-top:3px}
+  .pub h3{font-size:1.1rem;margin-bottom:5px}
+  .pub h3 a{text-decoration:none}
+  .pub h3 a:hover{text-decoration:underline}
+  .authors{margin:0;font-size:.93rem;color:var(--ink-2)}
+  .authors b{color:var(--ink);font-weight:600}
+  .venue{margin:2px 0 0;font-size:.93rem;color:var(--ink-2)}
+  .venue i{font-family:var(--serif)}
+  .links{margin:8px 0 0;display:flex;flex-wrap:wrap;gap:8px}
+  .links a,.links .st{font-family:var(--mono);font-size:.72rem;letter-spacing:.04em;text-transform:uppercase;text-decoration:none;border:1px solid var(--rule);border-radius:3px;padding:2px 8px;color:var(--ink-2);background:color-mix(in srgb,var(--paper-2) 60%,transparent)}
+  .links a:hover{border-color:var(--accent);color:var(--accent)}
+  .links .st{color:var(--accent-2);border-color:color-mix(in srgb,var(--accent-2) 35%,transparent)}
+  .subhead{font-family:var(--mono);font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin:40px 0 4px;padding-bottom:10px;border-bottom:1px solid var(--rule)}
+  .inner > .subhead:first-child,.body > .subhead:first-child{margin-top:0}
+  details.all{margin-top:36px;border:1px solid var(--rule);border-radius:6px;background:color-mix(in srgb,var(--paper-2) 45%,transparent)}
+  details.all summary{cursor:pointer;list-style:none;padding:16px 22px;font-weight:500;display:flex;justify-content:space-between;align-items:center;gap:16px}
+  details.all summary::-webkit-details-marker{display:none}
+  details.all summary::after{content:"+";font-family:var(--mono);font-size:1.2rem;color:var(--accent)}
+  details.all[open] summary::after{content:"−"}
+  details.all .inner{padding:4px 22px 22px}
+
+  /* Two-col lists */
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:0 56px}
+  ul.dots{margin:0;padding:0;list-style:none}
+  ul.dots li{position:relative;padding:14px 0 14px 22px;border-bottom:1px solid var(--rule)}
+  ul.dots li:last-child{border-bottom:none}
+  ul.dots li::before{content:"";position:absolute;left:2px;top:25px;width:7px;height:7px;border-radius:50%;background:var(--accent-2)}
+  ul.dots strong{font-weight:600}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 0;padding:0}
+  .chips li{list-style:none;font-size:.86rem;border:1px solid var(--rule);border-radius:999px;padding:4px 12px;background:var(--paper)}
+
+  /* Contact */
+  .contact{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:56px;align-items:start}
+  .contact p{color:var(--ink-2);margin:0 0 18px}
+  .mailcard{border:1px solid var(--rule);border-radius:6px;padding:26px;background:var(--paper)}
+  .mailcard .label{font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin:0 0 6px}
+  .mailcard .addr{font-family:var(--serif);font-size:1.3rem;margin:0 0 18px;word-break:break-all}
+  .copy{font:500 .85rem var(--sans);background:none;border:1px solid var(--ink);border-radius:999px;padding:7px 14px;cursor:pointer;color:var(--ink)}
+  .copy:hover{background:var(--ink);color:var(--paper)}
+  .copy .done{display:none}
+  .copy.copied .idle{display:none}
+  .copy.copied .done{display:inline}
+
+  /* Footer */
+  footer{border-top:1px solid var(--rule);padding:40px 0 56px;font-size:.9rem;color:var(--ink-3)}
+  footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;align-items:baseline}
+  footer .fname{font-family:var(--serif);color:var(--ink);font-size:1.05rem}
+  footer ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:18px}
+  footer a{color:var(--ink-2)}
+
+  /* Responsive */
+  @media (max-width:1040px){
+    nav.menu ul{gap:18px}
+    nav.menu a{font-size:.88rem}
+  }
+  @media (max-width:920px){
+    .hero{grid-template-columns:1fr;gap:40px;padding-top:48px}
+    .portrait{justify-self:start;order:-1}
+    .portrait img{width:150px;height:150px;box-shadow:8px 8px 0 var(--paper-2),8px 8px 0 1px var(--rule)}
+    .portrait figcaption{display:none}
+    .shead{grid-template-columns:1fr;gap:6px}
+    .num b{display:inline;margin-left:10px}
+    .body{margin-left:0}
+    .lines,.cols,.contact{grid-template-columns:1fr}
+    .lines li:nth-last-child(2){border-bottom:1px solid var(--rule)}
+  }
+  @media (max-width:880px){
+    .menu-btn{display:inline-block}
+    nav.menu{position:absolute;top:68px;left:0;right:0;background:var(--paper);border-bottom:1px solid var(--rule);display:none}
+    nav.menu.open{display:block}
+    nav.menu ul{flex-direction:column;gap:0;padding:8px 28px 16px}
+    nav.menu a{display:block;padding:10px 0;font-size:1rem}
+    .right{gap:10px}
+  }
+  @media (max-width:760px){
+    body{font-size:16px}
+    .entry,.pub{grid-template-columns:1fr;gap:4px}
+    .date{padding-top:0}
+    section.block{padding:56px 0}
+  }
+  @media (max-width:430px){
+    .wrap{padding:0 20px}
+    .brand{font-size:1rem}
+    .brand i{display:none}
+    .toggles{gap:6px}
+  }
+  @media print{
+    header.site,.menu-btn,.copy,.skip{display:none}
+    body{background:#fff}
+    details.all{border:none}
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#main"><span lang="el">Μετάβαση στο περιεχόμενο</span><span lang="en">Skip to content</span></a>
+
+<header class="site" id="top">
+  <div class="wrap bar">
+    <a class="brand" href="#top"><span lang="el">Δημήτριος Γουσόπουλος</span><span lang="en">Dimitrios Gousopoulos</span> <i>PhD</i></a>
+    <div class="right">
+      <nav class="menu" id="menu" aria-label="Menu">
+        <ul>
+          <li><a href="#research"><span lang="el">Έρευνα</span><span lang="en">Research</span></a></li>
+          <li><a href="#teaching"><span lang="el">Διδασκαλία</span><span lang="en">Teaching</span></a></li>
+          <li><a href="#publications"><span lang="el">Δημοσιεύσεις</span><span lang="en">Publications</span></a></li>
+          <li><a href="#projects"><span lang="el">Έργα</span><span lang="en">Projects</span></a></li>
+          <li><a href="#cv"><span lang="el">Πορεία</span><span lang="en">CV</span></a></li>
+          <li><a href="#contact"><span lang="el">Επικοινωνία</span><span lang="en">Contact</span></a></li>
+        </ul>
+      </nav>
+      <div class="toggles">
+        <div class="seg" role="group" aria-label="Γλώσσα / Language">
+          <button type="button" data-set-lang="el" aria-pressed="true">ΕΛ</button>
+          <button type="button" data-set-lang="en" aria-pressed="false">EN</button>
+        </div>
+        <button type="button" class="icon-btn" id="theme-btn" aria-label="Φωτεινό / σκοτεινό θέμα · Light / dark theme" title="Light / dark">
+          <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+          <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.2M12 19.8V22M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M2 12h2.2M19.8 12H22M4.2 19.8l1.6-1.6M18.2 5.8l1.6-1.6"/></svg>
+        </button>
+        <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu"><span lang="el">Μενού</span><span lang="en">Menu</span></button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <section class="hero">
+      <div>
+        <p class="kicker"><span lang="el">Τεχνητή Νοημοσύνη & Ποσοτικές Μέθοδοι · Πάντειο Πανεπιστήμιο</span><span lang="en">Artificial Intelligence & Quantitative Methods · Panteion University</span></p>
+        <h1 lang="el">Τεχνητή Νοημοσύνη για τη <em>μάθηση.</em> Δεδομένα για τις αποφάσεις.</h1>
+        <h1 lang="en">Artificial Intelligence for <em>learning.</em> Data for decisions.</h1>
+        <p class="lede" lang="el">Είμαι μεταδιδακτορικός ερευνητής στην Τεχνητή Νοημοσύνη και τις Ποσοτικές Μεθόδους στο Πάντειο Πανεπιστήμιο και διδάσκων στο ΠΜΣ <a href="https://digi-dcl.com" target="_blank" rel="noopener">Digital Transformation (Digi-DCL)</a>. Η δουλειά μου συνδέει συστήματα βασισμένα σε LLMs, την εκπαιδευτική τεχνολογία και τον ψηφιακό μετασχηματισμό με τη Στατιστική, την Πληροφορική και την ανάλυση δεδομένων.</p>
+        <p class="lede" lang="en">I am a postdoctoral researcher in Artificial Intelligence and Quantitative Methods at Panteion University and an instructor in the MA in <a href="https://digi-dcl.com" target="_blank" rel="noopener">Digital Transformation (Digi-DCL)</a>. My work connects LLM-based systems, educational technology and digital transformation with statistics, computer science and data analysis.</p>
+        <div class="actions">
+          <a class="btn primary" href="#cv"><span lang="el">Σπουδές & πορεία</span><span lang="en">Education & career</span></a>
+          <a class="btn ghost" href="cv.pdf"><span lang="el">Βιογραφικό (PDF)</span><span lang="en">CV (PDF)</span></a>
+        </div>
+        <ul class="profiles">
+          <li><a href="https://scholar.google.com/citations?user=qLZJdUYAAAAJ" target="_blank" rel="noopener">Google Scholar ↗</a></li>
+          <li><a href="https://github.com/dimgouso" target="_blank" rel="noopener">GitHub ↗</a></li>
+          <li><a href="#contact"><span lang="el">Επικοινωνία</span><span lang="en">Contact</span></a></li>
+        </ul>
+      </div>
+      <figure class="portrait">
+        <img src="data:image/jpeg;base64,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" alt="Dimitrios Gousopoulos" width="260" height="260">
+        <figcaption><span lang="el">PhD Εκπαιδευτική Τεχνολογία · ΕΚΠΑ</span><span lang="en">PhD Educational Technology · NKUA</span></figcaption>
+      </figure>
+    </section>
+  </div>
+
+  <!-- 01 Research -->
+  <section class="block" id="research">
+    <div class="wrap">
+      <div class="shead">
+        <div class="num">01 <b><span lang="el">Έρευνα</span><span lang="en">Research</span></b></div>
+        <h2><span lang="el">Ερευνητικοί άξονες</span><span lang="en">Lines of work</span></h2>
+        <a class="more" href="#publications"><span lang="el">Δημοσιεύσεις</span><span lang="en">Publications</span> →</a>
+      </div>
+      <div class="body">
+        <ul class="lines">
+          <li><span class="roman">i.</span><div>
+            <h3><span lang="el">Ποσοτικές μέθοδοι & ποιότητα δεδομένων</span><span lang="en">Quantitative methods & data quality</span></h3>
+            <p><span lang="el">Στατιστικά και οικονομετρικά μοντέλα στην εκπαίδευση στελεχών στην ΤΝ, μεθοδολογία μετρήσεων και data quality assurance.</span><span lang="en">Statistical and econometric models for AI training of professionals, measurement methodology and data quality assurance.</span></p>
+          </div></li>
+          <li><span class="roman">ii.</span><div>
+            <h3><span lang="el">Fuzzy methods & ανάλυση αποφάσεων</span><span lang="en">Fuzzy methods & decision analysis</span></h3>
+            <p><span lang="el">Fuzzy DEMATEL, fuzzy comprehensive evaluation και πολυκριτηριακά μοντέλα για την αποδοχή και την αξιολόγηση εργαλείων ΤΝ.</span><span lang="en">Fuzzy DEMATEL, fuzzy comprehensive evaluation and multi-criteria models for the acceptance and evaluation of AI tools.</span></p>
+          </div></li>
+          <li><span class="roman">iii.</span><div>
+            <h3><span lang="el">LLMs ως εκπαιδευτικά εργαλεία</span><span lang="en">LLMs as educational tools</span></h3>
+            <p><span lang="el">Custom GPTs, AI tutors και prompt engineering στη διδασκαλία των φυσικών επιστημών και στην εκπαίδευση πολιτιστικής κληρονομιάς.</span><span lang="en">Custom GPTs, AI tutors and prompt engineering in science teaching and in cultural heritage education.</span></p>
+          </div></li>
+          <li><span class="roman">iv.</span><div>
+            <h3><span lang="el">Μάθηση μέσω κώδικα με Generative AI</span><span lang="en">Learning by coding with generative AI</span></h3>
+            <p><span lang="el">Learning-by-coding και το πλαίσιο Code to Learn with Generative AI για την κατασκευή ψηφιακών τεχνουργημάτων στο σχολείο.</span><span lang="en">Learning-by-coding and the Code to Learn with Generative AI framework for artifact construction in schools.</span></p>
+          </div></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 Teaching -->
+  <section class="block" id="teaching">
+    <div class="wrap">
+      <div class="shead">
+        <div class="num">02 <b><span lang="el">Διδασκαλία</span><span lang="en">Teaching</span></b></div>
+        <h2><span lang="el">Πανεπιστημιακή διδασκαλία</span><span lang="en">University teaching</span></h2>
+        <span></span>
+      </div>
+      <div class="body">
+        <ul class="entries">
+          <li class="entry"><div class="date">2026 – 2027</div><div>
+            <h3><span lang="el">Ποσοτικές Μέθοδοι</span><span lang="en">Quantitative Methods</span> <span class="tag"><span lang="el">ΠΜΣ</span><span lang="en">MA</span></span></h3>
+            <p class="meta"><span lang="el">ΠΜΣ «Οικονομική Επιστήμη», Τμήμα Δημόσιας Διοίκησης, Πάντειο Πανεπιστήμιο · συνδιδασκαλία</span><span lang="en">MA in Economic Science, Department of Public Administration, Panteion University · co-taught</span></p>
+          </div></li>
+          <li class="entry"><div class="date">2024 – <span lang="el">σήμερα</span><span lang="en">present</span></div><div>
+            <h3>Artificial Intelligence: the driving force behind Economy 4.0 <span class="tag"><span lang="el">ΠΜΣ</span><span lang="en">MA</span></span></h3>
+            <p class="meta"><span lang="el">Μάθημα Economy 4.0 και Bootcamp: Intro to the Digital Era & Research Methods</span><span lang="en">Course Economy 4.0 and Bootcamp: Intro to the Digital Era & Research Methods</span></p>
+            <p class="meta"><span lang="el">Διατμηματικό ΠΜΣ Digital Transformation: e-Diplomacy, e-Campaigning and Digital Law (Digi-DCL), Πάντειο Πανεπιστήμιο</span><span lang="en">Inter-departmental MA Digital Transformation: e-Diplomacy, e-Campaigning and Digital Law (Digi-DCL), Panteion University</span></p>
+          </div></li>
+          <li class="entry"><div class="date"><span lang="el">Εαρινό 2025</span><span lang="en">Spring 2025</span></div><div>
+            <h3><span lang="el">Εφαρμογές Πληροφορικής ΙΙ</span><span lang="en">Computer Applications II</span></h3>
+            <p class="meta"><span lang="el">Τμήμα Διεθνών και Ευρωπαϊκών Οικονομικών Σπουδών, Οικονομικό Πανεπιστήμιο Αθηνών · αυτοδύναμη διδασκαλία</span><span lang="en">Department of International and European Economic Studies, Athens University of Economics and Business · sole instructor</span></p>
+          </div></li>
+          <li class="entry"><div class="date"><span lang="el">Εαρινό 2024</span><span lang="en">Spring 2024</span></div><div>
+            <h3><span lang="el">Στατιστική Ι · Εφαρμογές Πληροφορικής – Ανάλυση Δεδομένων</span><span lang="en">Statistics I · Computer Applications – Data Analysis</span></h3>
+            <p class="meta"><span lang="el">Τμήμα Δημόσιας Διοίκησης, Πάντειο Πανεπιστήμιο · αυτοδύναμη διδασκαλία</span><span lang="en">Department of Public Administration, Panteion University · sole instructor</span></p>
+          </div></li>
+          <li class="entry"><div class="date">2025</div><div>
+            <h3><span lang="el">Τεχνητή Νοημοσύνη στην Εκπαίδευση</span><span lang="en">Artificial Intelligence in Education</span></h3>
+            <p class="meta"><span lang="el">Πρόγραμμα ΚΕΔΙΒΙΜ, Ιόνιο Πανεπιστήμιο · εργαλεία ΤΝ στη διδακτική πράξη, υπολογιστική σκέψη, ηθικές διαστάσεις</span><span lang="en">Lifelong-learning programme (KEDIVIM), Ionian University · AI tools in teaching practice, computational thinking, ethical dimensions</span></p>
+          </div></li>
+          <li class="entry"><div class="date">2013 – 2014</div><div>
+            <h3><span lang="el">Εφαρμογές Η/Υ στην Εκπαίδευση</span><span lang="en">Computer Applications in Education</span> <span class="tag"><span lang="el">ΠΜΣ</span><span lang="en">MA</span></span></h3>
+            <p class="meta"><span lang="el">Εργαστηριακό μέρος, Παιδαγωγικό Τμήμα, Εθνικό και Καποδιστριακό Πανεπιστήμιο Αθηνών</span><span lang="en">Laboratory component, Department of Primary Education, National and Kapodistrian University of Athens</span></p>
+          </div></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 Publications -->
+  <section class="block" id="publications">
+    <div class="wrap">
+      <div class="shead">
+        <div class="num">03 <b><span lang="el">Δημοσιεύσεις</span><span lang="en">Publications</span></b></div>
+        <h2><span lang="el">Δημοσιεύσεις σε διεθνή περιοδικά</span><span lang="en">International journal articles</span></h2>
+        <a class="more" href="https://scholar.google.com/citations?user=qLZJdUYAAAAJ" target="_blank" rel="noopener">Google Scholar ↗</a>
+      </div>
+      <div class="body">
+        <ul class="pubs">
+          <li class="pub"><div class="yr">2026</div><div>
+            <h3><a href="https://doi.org/10.1007/978-3-032-15069-1_33" target="_blank" rel="noopener">Exploring the Use of LLMs as Educational Tools in Cultural Heritage Education</a></h3>
+            <p class="authors"><b>Gousopoulos, D.</b>, Petrakos, G.</p>
+            <p class="venue"><i>Communications in Computer and Information Science</i>, vol. 2838, pp. 461–471. Springer</p>
+            <p class="links"><a href="https://doi.org/10.1007/978-3-032-15069-1_33" target="_blank" rel="noopener">DOI</a></p>
+          </div></li>
+          <li class="pub"><div class="yr">2026</div><div>
+            <h3>AI-Generated Simulations in STEM Education: A Scoping Review</h3>
+            <p class="authors"><b>Gousopoulos, D.</b></p>
+            <p class="venue"><i>Journal of Digital Educational Technology</i></p>
+            <p class="links"><span class="st">Accepted</span></p>
+          </div></li>
+          <li class="pub"><div class="yr">2026</div><div>
+            <h3><a href="https://doi.org/10.1007/s44217-026-01913-z" target="_blank" rel="noopener">Evaluating a GPT-Powered Tutor in Secondary Science Education Using a Fuzzy Comprehensive Approach</a></h3>
+            <p class="authors"><b>Gousopoulos, D.</b></p>
+            <p class="venue"><i>Discover Education</i>. Springer Nature</p>
+            <p class="links"><a href="https://doi.org/10.1007/s44217-026-01913-z" target="_blank" rel="noopener">DOI</a></p>
+          </div></li>
+          <li class="pub"><div class="yr">2026</div><div>
+            <h3><a href="https://doi.org/10.59652/43y3xd28" target="_blank" rel="noopener">Teacher Acceptance of AI-Generated Educational Simulations: A Fuzzy DEMATEL Causal Analysis</a></h3>
+            <p class="authors"><b>Gousopoulos, D.</b></p>
+            <p class="venue"><i>EIKI Journal of Effective Teaching Methods</i>, 4(2)</p>
+            <p class="links"><a href="https://doi.org/10.59652/43y3xd28" target="_blank" rel="noopener">DOI</a></p>
+          </div></li>
+          <li class="pub"><div class="yr">2026</div><div>
+            <h3><a href="https://doi.org/10.62225/2583049X.2026.6.3.6516" target="_blank" rel="noopener">Can AI-Assisted Inquiry Enhance Students' Decision-Making Skills in Socio-Scientific Issues? A Three-Group Experimental Study on Climate Change</a></h3>
+            <p class="authors"><b>Gousopoulos, D.</b></p>
+            <p class="venue"><i>International Journal of Advanced Multidisciplinary Research and Studies</i>, 6(3)</p>
+            <p class="links"><a href="https://doi.org/10.62225/2583049X.2026.6.3.6516" target="_blank" rel="noopener">DOI</a></p>
+          </div></li>
+          <li class="pub"><div class="yr">2025</div><div>
+            <h3>Learning-by-coding as an educational method of approaching projectile motion</h3>
+            <p class="authors"><b>Gousopoulos, D.</b></p>
+            <p class="venue"><i>The Physics Teacher</i>, 63(6), 488–491</p>
+          </div></li>
+          <li class="pub"><div class="yr">2024</div><div>
+            <h3>Educational approach of Special Relativity using a custom GPT as teaching assistant</h3>
+            <p class="authors"><b>Gousopoulos, D.</b></p>
+            <p class="venue"><i>EIKI Journal of Effective Teaching Methods</i>, 2(4)</p>
+          </div></li>
+        </ul>
+
+        <details class="all">
+          <summary><span lang="el">Όλες οι δημοσιεύσεις: συνέδρια, ελληνικά περιοδικά, preprints, βιβλία</span><span lang="en">All publications: conferences, Greek journals, preprints, books</span></summary>
+          <div class="inner">
+
+            <p class="subhead"><span lang="el">Υπό κρίση</span><span lang="en">Under review</span></p>
+            <ul class="pubs">
+              <li class="pub"><div class="yr">2026</div><div>
+                <h3>Fuzzy Comprehensive Evaluation of ChatGPT Acceptance among Digital Transformation Postgraduate Students</h3>
+                <p class="authors"><b>Gousopoulos, D.</b></p>
+                <p class="venue"><i>Journal of Applied Research in Higher Education</i> (Emerald)</p>
+                <p class="links"><span class="st">Under review</span></p>
+              </div></li>
+            </ul>
+
+            <p class="subhead"><span lang="el">Προδημοσιεύσεις (preprints)</span><span lang="en">Preprints</span></p>
+            <ul class="pubs">
+              <li class="pub"><div class="yr">2026</div><div>
+                <h3><a href="https://doi.org/10.20944/preprints202606.1139.v1" target="_blank" rel="noopener">Code to Learn with Generative AI: A Theoretically Grounded Framework for Artifact Construction in Upper-Secondary Education</a></h3>
+                <p class="authors"><b>Gousopoulos, D.</b></p>
+                <p class="venue"><i>Preprints.org</i></p>
+                <p class="links"><a href="https://doi.org/10.20944/preprints202606.1139.v1" target="_blank" rel="noopener">DOI</a></p>
+              </div></li>
+              <li class="pub"><div class="yr">2025</div><div>
+                <h3><a href="https://arxiv.org/abs/2510.08634" target="_blank" rel="noopener">Exploring Teachers' Perceptions of ChatGPT Through Prompt Engineering</a></h3>
+                <p class="authors"><b>Gousopoulos, D.</b></p>
+                <p class="venue"><i>arXiv</i>:2510.08634</p>
+                <p class="links"><a href="https://arxiv.org/abs/2510.08634" target="_blank" rel="noopener">arXiv</a></p>
+              </div></li>
+              <li class="pub"><div class="yr">2024</div><div>
+                <h3><a href="https://arxiv.org/abs/2412.18617" target="_blank" rel="noopener">Developing a Custom GPT Based on Inquiry-Based Learning for Physics Teachers</a></h3>
+                <p class="authors"><b>Gousopoulos, D.</b></p>
+                <p class="venue"><i>arXiv</i>:2412.18617</p>
+                <p class="links"><a href="https://arxiv.org/abs/2412.18617" target="_blank" rel="noopener">arXiv</a></p>
+              </div></li>
+              <li class="pub"><div class="yr">2024</div><div>
+                <h3>Enhancing Physics Teachers' Self-Concept with Generative AI-Driven Educational Scenarios</h3>
+                <p class="authors"><b>Gousopoulos, D.</b></p>
+                <p class="venue"><i>TechRxiv</i></p>
+              </div></li>
+              <li class="pub"><div class="yr">2024</div><div>
+                <h3><a href="https://arxiv.org/abs/2402.05497" target="_blank" rel="noopener">Thinking Fast and Slow and Science Education</a></h3>
+                <p class="authors"><b>Gousopoulos, D.</b></p>
+                <p class="venue"><i>arXiv</i>:2402.05497</p>
+                <p class="links"><a href="https://arxiv.org/abs/2402.05497" target="_blank" rel="noopener">arXiv</a></p>
+              </div></li>
+              <li class="pub"><div class="yr">2023</div><div>
+                <h3><a href="https://arxiv.org/abs/2311.07158" target="_blank" rel="noopener">Investigating Students' Scientific Reasoning Through Heuristic and Analytical Thought Processes</a></h3>
+                <p class="authors"><b>Gousopoulos, D.</b></p>
+                <p class="venue"><i>arXiv</i>:2311.07158</p>
+                <p class="links"><a href="https://arxiv.org/abs/2311.07158" target="_blank" rel="noopener">arXiv</a></p>
+              </div></li>
+            </ul>
+
+            <p class="subhead"><span lang="el">Διεθνή συνέδρια με κριτές</span><span lang="en">International peer-reviewed conferences</span></p>
+            <ul class="pubs">
+              <li class="pub"><div class="yr">2026</div><div>
+                <h3>Smart Cultural Heritage: Design and Development of an AI-Powered Mobile Application for Personalized Museum Exploration</h3>
+                <p class="authors"><b>Gousopoulos, D.</b>, Petrakos, G.</p>
+                <p class="venue"><i>5th International Conference TMM_CH 2026</i>, Athens</p>
+                <p class="links"><span class="st">In press</span></p>
+              </div></li>
+              <li class="pub"><div class="yr">2026</div><div>
+                <h3>Παράγοντες Αποδοχής AI-Generated Προσομοιώσεων από Εκπαιδευτικούς: Μία Fuzzy DEMATEL Ανάλυση <span lang="en" class="tag">in Greek</span></h3>
+                <p class="authors"><b>Γουσόπουλος, Δ.</b></p>
+                <p class="venue"><i>11ο Διεθνές Συνέδριο «Εκπαίδευση και Πολιτισμός στον 21ο αιώνα»</i>, <span lang="el">Αθήνα</span><span lang="en">Athens</span></p>
+              </div></li>
+              <li class="pub"><div class="yr">2015</div><div>
+                <h3>Students' difficulties in understanding the basic principles of Relativity after standard instruction</h3>
+                <p class="authors"><b>Gousopoulos, D.</b>, Kapotis, E., Kalkanis, G.</p>
+                <p class="venue"><i>ESERA Conference</i>, Helsinki, Finland</p>
+              </div></li>
+              <li class="pub"><div class="yr">2010</div><div>
+                <h3>A hands-on experimentation and educational study for a 2000 years-old puzzle, the Mpemba Effect</h3>
+                <p class="authors"><b>Gousopoulos, D.</b>, Oikonomidis, S., Kalkanis, G.</p>
+                <p class="venue"><i>HSci 2010 – 7th International Conference on Hands-on Science</i>, University of Crete, Rethymno</p>
+              </div></li>
+            </ul>
+
+            <p class="subhead"><span lang="el">Ελληνικά περιοδικά με κριτές</span><span lang="en">Greek peer-reviewed journals</span></p>
+            <ul class="pubs">
+              <li class="pub"><div class="yr">2026</div><div>
+                <h3>Η Τεχνητή Νοημοσύνη στην Ανώτατη Εκπαίδευση: Αντιλήψεις, Ανησυχίες και Χρήση Εργαλείων ΤΝ από Φοιτητές/τριες της Δημόσιας Διοίκησης</h3>
+                <p class="authors">Αθανασακοπούλου, Σ., <b>Γουσόπουλος, Δ.</b>, Πετράκος, Γ.</p>
+                <p class="venue"><i>Διάλογοι στη Δημόσια Διοίκηση</i></p>
+                <p class="links"><span class="st"><span lang="el">Υπό δημοσίευση</span><span lang="en">In press</span></span></p>
+              </div></li>
+              <li class="pub"><div class="yr">2024</div><div>
+                <h3>Η Ειδική Θεωρία της Σχετικότητας στην Εκπαίδευση</h3>
+                <p class="authors"><b>Γουσόπουλος, Δ.</b></p>
+                <p class="venue"><i>Νέος Παιδαγωγός</i>, <span lang="el">Μάρτιος</span><span lang="en">March</span>, 107–114</p>
+              </div></li>
+              <li class="pub"><div class="yr">2024</div><div>
+                <h3>Αργή και γρήγορη σκέψη και εκπαίδευση στις φυσικές επιστήμες</h3>
+                <p class="authors"><b>Γουσόπουλος, Δ.</b></p>
+                <p class="venue"><i>Νέος Παιδαγωγός</i>, <span lang="el">Ιανουάριος</span><span lang="en">January</span>, 28–36</p>
+              </div></li>
+            </ul>
+
+            <p class="subhead"><span lang="el">Ελληνικά συνέδρια με κριτές</span><span lang="en">Greek peer-reviewed conferences</span></p>
+            <ul class="pubs">
+              <li class="pub"><div class="yr">2025</div><div>
+                <h3><a href="https://doi.org/10.12681/codiste.9891" target="_blank" rel="noopener">Prompt Engineering στη διδασκαλία Φυσικών Επιστημών</a></h3>
+                <p class="authors"><b>Γουσόπουλος, Δ.</b></p>
+                <p class="venue"><i>14ο Πανελλήνιο Συνέδριο Διδακτικής ΦΕ</i>, <span lang="el">Θεσσαλονίκη</span><span lang="en">Thessaloniki</span></p>
+                <p class="links"><a href="https://doi.org/10.12681/codiste.9891" target="_blank" rel="noopener">DOI</a></p>
+              </div></li>
+              <li class="pub"><div class="yr">2017</div><div>
+                <h3>Μαθησιακά αντικείμενα προσομοίωσης φυσικών φαινομένων</h3>
+                <p class="authors">Καπότης, Ε., Τσάκωνας, Π., <b>Γουσόπουλος, Δ.</b></p>
+                <p class="venue"><i>10ο Πανελλήνιο Συνέδριο Διδακτικής ΦΕ</i>, <span lang="el">Κρήτη</span><span lang="en">Crete</span></p>
+              </div></li>
+              <li class="pub"><div class="yr">2015</div><div>
+                <h3>Δυσκολίες κατανόησης της Ειδικής Σχετικότητας</h3>
+                <p class="authors"><b>Γουσόπουλος, Δ.</b>, Καλκάνης, Γ.</p>
+                <p class="venue"><i>9ο Πανελλήνιο Συνέδριο Διδακτικής ΦΕ</i>, <span lang="el">Θεσσαλονίκη</span><span lang="en">Thessaloniki</span></p>
+              </div></li>
+              <li class="pub"><div class="yr">2015</div><div>
+                <h3>Σχετικιστικά και κλασικά όρια με χρήση αλληλεπιδραστικού λογισμικού</h3>
+                <p class="authors"><b>Γουσόπουλος, Δ.</b>, Καπότης, Ε.</p>
+                <p class="venue"><i>9ο Πανελλήνιο Συνέδριο Διδακτικής ΦΕ</i>, <span lang="el">Θεσσαλονίκη</span><span lang="en">Thessaloniki</span></p>
+              </div></li>
+              <li class="pub"><div class="yr">2015</div><div>
+                <h3>Η περίπτωση “Interstellar” στη διδασκαλία ΦΕ</h3>
+                <p class="authors">Καλκάνης, Γ., Γκικοπούλου, Ο., Καπότης, Ε., <b>Γουσόπουλος, Δ.</b></p>
+                <p class="venue"><i>9ο Πανελλήνιο Συνέδριο Διδακτικής ΦΕ</i>, <span lang="el">Θεσσαλονίκη</span><span lang="en">Thessaloniki</span></p>
+              </div></li>
+              <li class="pub"><div class="yr">2015</div><div>
+                <h3>Πειράματα και ιδιοκατασκευές στη Φυσική</h3>
+                <p class="authors">Καλκάνης, Γ., Γκικοπούλου, Ο., Καπότης, Ε., <b>Γουσόπουλος, Δ.</b> <span lang="el">κ.ά.</span><span lang="en">et al.</span></p>
+                <p class="venue"><i>9ο Πανελλήνιο Συνέδριο Διδακτικής ΦΕ</i>, <span lang="el">Θεσσαλονίκη</span><span lang="en">Thessaloniki</span></p>
+              </div></li>
+              <li class="pub"><div class="yr">2013</div><div>
+                <h3>Αυτοκατασκευές κινητήρα και γεννήτριας για εκπαιδευτικό πειραματισμό</h3>
+                <p class="authors">Γκικοπούλου, Ο., Καπότης, Ε., <b>Γουσόπουλος, Δ.</b>, Καλκάνης, Γ.</p>
+                <p class="venue"><i>8ο Πανελλήνιο Συνέδριο Διδακτικής ΦΕ</i>, <span lang="el">Βόλος</span><span lang="en">Volos</span></p>
+              </div></li>
+              <li class="pub"><div class="yr">2013</div><div>
+                <h3>Ερευνώ & Ανακαλύπτω στην Πρωτοβάθμια Εκπαίδευση</h3>
+                <p class="authors">Καλκάνης, Γ., Γκικοπούλου, Ο., Ιμβριώτη, Δ., Καπότης, Ε., <b>Γουσόπουλος, Δ.</b></p>
+                <p class="venue"><i>8ο Πανελλήνιο Συνέδριο Διδακτικής ΦΕ</i>, <span lang="el">Βόλος</span><span lang="en">Volos</span></p>
+              </div></li>
+              <li class="pub"><div class="yr">2012</div><div>
+                <h3>Βυζαντινή φυσική φιλοσοφία: ο Μιχαήλ Ψελλός</h3>
+                <p class="authors"><b>Γουσόπουλος, Δ.</b>, Κατσιαμπούρα, Γ.</p>
+                <p class="venue"><i>7ο Πανελλήνιο Συνέδριο Ιστορίας & Φιλοσοφίας ΦΕ</i></p>
+              </div></li>
+            </ul>
+
+            <p class="subhead"><span lang="el">Βιβλία</span><span lang="en">Books</span></p>
+            <ul class="pubs">
+              <li class="pub"><div class="yr">2015</div><div>
+                <h3><span lang="el">Φυσική Γ΄ Λυκείου</span><span lang="en">Physics, Grade 12 (Γ΄ Λυκείου)</span></h3>
+                <p class="venue"><span lang="el">Εκδόσεις Ώθηση</span><span lang="en">Othisi Publications</span> · ISBN 978-960-415-356-5</p>
+              </div></li>
+              <li class="pub"><div class="yr">2014</div><div>
+                <h3><span lang="el">Φυσική Α΄ Γυμνασίου — Βιβλίο Καθηγητή</span><span lang="en">Physics, Grade 7 — Teacher's Book (national textbook)</span></h3>
+                <p class="venue"><span lang="el">Εκδόσεις Διόφαντος – Υπουργείο Παιδείας</span><span lang="en">Diophantus – Greek Ministry of Education</span> · ISBN 978-960-06-4568-2</p>
+              </div></li>
+              <li class="pub"><div class="yr">2013</div><div>
+                <h3><span lang="el">Φυσική Α΄ Γυμνασίου — Βιβλίο Μαθητή</span><span lang="en">Physics, Grade 7 — Student's Book (national textbook)</span></h3>
+                <p class="venue"><span lang="el">Εκδόσεις Διόφαντος – Υπουργείο Παιδείας</span><span lang="en">Diophantus – Greek Ministry of Education</span> · ISBN 978-960-06-4416-6</p>
+              </div></li>
+            </ul>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 Projects -->
+  <section class="block" id="projects">
+    <div class="wrap">
+      <div class="shead">
+        <div class="num">04 <b><span lang="el">Έργα</span><span lang="en">Projects</span></b></div>
+        <h2><span lang="el">Ερευνητικά έργα & συνεργασίες</span><span lang="en">Research projects & collaborations</span></h2>
+        <a class="more" href="https://github.com/dimgouso" target="_blank" rel="noopener">GitHub ↗</a>
+      </div>
+      <div class="body">
+        <ul class="entries">
+          <li class="entry"><div class="date">2026 – 2027</div><div>
+            <h3><span lang="el">Ερευνητής · Ινστιτούτο Τουριστικών Ερευνών και Προβλέψεων (ΙΤΕΠ)</span><span lang="en">Researcher · Institute for Tourism Research and Forecasts (ITEP)</span></h3>
+            <p class="meta"><span lang="el">Στατιστική ανάλυση ερευνητικών δεδομένων, επιστημονικές εκθέσεις και ενσωμάτωση τεχνολογιών ΤΝ στις ερευνητικές διαδικασίες του Ινστιτούτου.</span><span lang="en">Statistical analysis of research data, scientific reports and integration of AI technologies into the Institute's research processes.</span></p>
+          </div></li>
+          <li class="entry"><div class="date">2026</div><div>
+            <h3><span lang="el">Μεθοδολογία για την Παρακολούθηση και τον Έλεγχο Ποιότητας των Μετρήσεων της Ραδιοφωνικής Ακροαματικότητας στην Αττική</span><span lang="en">Methodology for Monitoring and Quality Control of Radio Audience Measurement in Attica</span></h3>
+            <p class="meta"><span lang="el">Πάντειο Πανεπιστήμιο (ΕΛΚΕ) · χρηματοδότηση: Α.Ε.Μ.Α.Ρ. · μεθοδολογία μέτρησης, στατιστικά μοντέλα, data pipelines και έλεγχος ποιότητας δεδομένων.</span><span lang="en">Panteion University (Research Committee) · funded by AEMAR · measurement methodology, statistical models, data pipelines and data quality control.</span></p>
+          </div></li>
+          <li class="entry"><div class="date">2024 – 2026</div><div>
+            <h3><span lang="el">Εμπειρογνώμονας ψηφιακού εκπαιδευτικού περιεχομένου · Ινστιτούτο Εκπαιδευτικής Πολιτικής</span><span lang="en">Digital educational content expert · Institute of Educational Policy</span></h3>
+            <p class="meta"><span lang="el">Εισηγητής/Αξιολογητής OERs, Εκπαιδευτικών Σεναρίων και Ψηφιακών Μαθημάτων σε έργο μετασχηματισμού των προγραμμάτων σπουδών σε ανοιχτά, διαδραστικά περιβάλλοντα με ενσωματωμένη ΤΝ.</span><span lang="en">Author and reviewer of OERs, educational scenarios and digital courses in a project transforming school curricula into open, interactive environments with embedded AI.</span></p>
+          </div></li>
+          <li class="entry"><div class="date">2025</div><div>
+            <h3><span lang="el">Σύμβουλος εκπαίδευσης στην ΤΝ · ΙΤΕΠ</span><span lang="en">AI training consultant · ITEP</span></h3>
+            <p class="meta"><span lang="el">Εκπαίδευση της ερευνητικής ομάδας στα εργαλεία ΤΝ για έρευνα, reporting και παρουσιάσεις· συμβολή στον σχεδιασμό πλατφόρμας ΤΝ.</span><span lang="en">Trained the research team in AI tools for research, reporting and presentations; contributed to the design of an AI platform.</span></p>
+          </div></li>
+          <li class="entry"><div class="date">2021 – 2023</div><div>
+            <h3><span lang="el">Θεματοδότης / Αξιολογητής · Τράπεζα Θεμάτων Διαβαθμισμένης Δυσκολίας, ΙΕΠ</span><span lang="en">Item writer / Reviewer · Graded-Difficulty Item Bank, Institute of Educational Policy</span></h3>
+            <p class="meta"><span lang="el">Μέλος της Ειδικής Επιστημονικής Ομάδας για τη Φυσική (Γενικό Λύκειο – ΕΠΑΛ).</span><span lang="en">Member of the scientific team for Physics (general and vocational upper-secondary schools).</span></p>
+          </div></li>
+          <li class="entry"><div class="date">2011 – 2016</div><div>
+            <h3><span lang="el">Πανελλήνιοι Διαγωνισμοί & Διεθνείς Ολυμπιάδες Φυσικής</span><span lang="en">National Physics Competitions & International Physics Olympiads</span></h3>
+            <p class="meta"><span lang="el">Ένωση Ελλήνων Φυσικών και Πανεπιστήμιο Αθηνών · συγγραφή θεμάτων και προετοιμασία των εθνικών αποστολών.</span><span lang="en">Association of Greek Physicists and University of Athens · problem writing and training of the national teams.</span></p>
+          </div></li>
+        </ul>
+
+        <p class="subhead" style="margin-top:48px"><span lang="el">Ψηφιακές εφαρμογές & εργαλεία</span><span lang="en">Digital applications & tools</span></p>
+        <div class="cols">
+          <ul class="dots">
+            <li><strong>Diplomat Coach</strong> — <span lang="el">σύστημα εκπαίδευσης στη διαπραγμάτευση βασισμένο σε LLMs.</span><span lang="en">LLM-based negotiation training system.</span></li>
+            <li><strong>Hospitality Intelligence Tool</strong> — <span lang="el">AI-driven analytics και υποστήριξη αποφάσεων για ξενοδοχεία.</span><span lang="en">AI-driven analytics and decision support for hotels.</span></li>
+          </ul>
+          <ul class="dots">
+            <li><strong>Agent Decision Intelligence (ADI)</strong> <span lang="el">και</span><span lang="en">and</span> <strong>QA-FTOPSIS</strong> — <span lang="el">εργαλεία Python για πολυκριτηριακή λήψη αποφάσεων και fuzzy methods.</span><span lang="en">Python tools for multi-criteria decision making and fuzzy methods.</span></li>
+            <li><strong><span lang="el">Διαδραστικές προσομοιώσεις</span><span lang="en">Interactive simulations</span></strong> — <span lang="el">7 web εφαρμογές (HTML, CSS, JavaScript) και 2 προσομοιώσεις σε Python, αξιολογημένες σε περιβάλλοντα μάθησης.</span><span lang="en">7 web applications (HTML, CSS, JavaScript) and 2 Python simulations, evaluated in learning settings.</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 CV -->
+  <section class="block" id="cv">
+    <div class="wrap">
+      <div class="shead">
+        <div class="num">05 <b><span lang="el">Πορεία</span><span lang="en">CV</span></b></div>
+        <h2><span lang="el">Σπουδές & επαγγελματική πορεία</span><span lang="en">Education & career</span></h2>
+        <a class="more" href="cv.pdf"><span lang="el">Βιογραφικό (PDF)</span><span lang="en">CV (PDF)</span> →</a>
+      </div>
+      <div class="body">
+        <p class="subhead"><span lang="el">Σπουδές</span><span lang="en">Education</span></p>
+        <ul class="entries">
+          <li class="entry"><div class="date">2025 – <span lang="el">σήμερα</span><span lang="en">present</span></div><div>
+            <h3><span lang="el">Μεταδιδακτορική έρευνα στην Τεχνητή Νοημοσύνη και τις Ποσοτικές Μεθόδους</span><span lang="en">Postdoctoral research in Artificial Intelligence and Quantitative Methods</span></h3>
+            <p class="meta"><span lang="el">Πάντειο Πανεπιστήμιο Κοινωνικών και Πολιτικών Επιστημών</span><span lang="en">Panteion University of Social and Political Sciences</span></p>
+            <p class="meta"><span lang="el">«Ανάπτυξη και εφαρμογή στατιστικών και οικονομετρικών μοντέλων στην εκπαίδευση στελεχών οργανισμών και επιχειρήσεων στις τεχνολογίες Τεχνητής Νοημοσύνης»</span><span lang="en">“Development and application of statistical and econometric models in training executives of organisations and businesses in Artificial Intelligence technologies”</span></p>
+          </div></li>
+          <li class="entry"><div class="date">2012 – 2016</div><div>
+            <h3><span lang="el">Διδακτορικό (PhD) στην Εκπαιδευτική Τεχνολογία</span><span lang="en">PhD in Educational Technology</span></h3>
+            <p class="meta"><span lang="el">Εθνικό και Καποδιστριακό Πανεπιστήμιο Αθηνών</span><span lang="en">National and Kapodistrian University of Athens</span></p>
+            <p class="meta"><span lang="el">«Εκπαιδευτικές Προσεγγίσεις της Ειδικής Θεωρίας της Σχετικότητας με Ψηφιακές Τεχνολογίες» · Υπότροφος SYLFF (Sasakawa Young Leaders Fellowship Fund), Nippon & Tokyo Foundation</span><span lang="en">“Educational Approaches to the Special Theory of Relativity with Digital Technologies” · SYLFF Fellow (Sasakawa Young Leaders Fellowship Fund), Nippon & Tokyo Foundation</span></p>
+          </div></li>
+          <li class="entry"><div class="date">2010 – 2012</div><div>
+            <h3><span lang="el">Μεταπτυχιακό στις Φυσικές Επιστήμες στην Εκπαίδευση</span><span lang="en">MSc in Science Education</span></h3>
+            <p class="meta"><span lang="el">Εθνικό και Καποδιστριακό Πανεπιστήμιο Αθηνών</span><span lang="en">National and Kapodistrian University of Athens</span></p>
+          </div></li>
+          <li class="entry"><div class="date">2005 – 2010</div><div>
+            <h3><span lang="el">Πτυχίο Φυσικής</span><span lang="en">BSc in Physics</span></h3>
+            <p class="meta"><span lang="el">Εθνικό και Καποδιστριακό Πανεπιστήμιο Αθηνών</span><span lang="en">National and Kapodistrian University of Athens</span></p>
+          </div></li>
+        </ul>
+
+        <p class="subhead"><span lang="el">Δεξιότητες & γλώσσες</span><span lang="en">Skills & languages</span></p>
+        <div class="cols">
+          <div>
+            <h3 style="margin-top:14px">AI & Analytics</h3>
+            <ul class="chips"><li>LLMs</li><li>AI tutoring systems</li><li>Predictive modeling</li><li>Fuzzy methods</li><li>PLS-SEM (SmartPLS)</li><li>Learning analytics</li></ul>
+          </div>
+          <div>
+            <h3 style="margin-top:14px"><span lang="el">Υπολογιστικά εργαλεία</span><span lang="en">Computational tools</span></h3>
+            <ul class="chips"><li>Python (Pandas, NumPy, scikit-learn)</li><li>R</li><li>SPSS</li><li>SQL</li><li>JavaScript</li><li>GitHub</li><li>Colab</li></ul>
+          </div>
+          <div>
+            <h3 style="margin-top:22px"><span lang="el">Γλώσσες</span><span lang="en">Languages</span></h3>
+            <ul class="chips"><li><span lang="el">Αγγλικά</span><span lang="en">English</span> · C2</li><li><span lang="el">Γαλλικά</span><span lang="en">French</span> · B2</li></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 Contact -->
+  <section class="block" id="contact">
+    <div class="wrap">
+      <div class="shead">
+        <div class="num">06 <b><span lang="el">Επικοινωνία</span><span lang="en">Contact</span></b></div>
+        <h2><span lang="el">Συνεργασίες, φοιτητές/τριες και προσκλήσεις για ομιλίες.</span><span lang="en">Collaborations, students and speaking invitations.</span></h2>
+        <span></span>
+      </div>
+      <div class="body contact">
+        <div>
+          <p lang="el">Για ερωτήσεις σχετικά με τα μαθήματα, ερευνητικές συνεργασίες ή σεμινάρια Τεχνητής Νοημοσύνης για οργανισμούς, στείλτε μου email.</p>
+          <p lang="en">For questions about my courses, research collaborations or Artificial Intelligence seminars for organisations, please send me an email.</p>
+        </div>
+        <div class="mailcard">
+          <p class="label">Email</p>
+          <p class="addr"><a href="mailto:dimgouso@gmail.com">dimgouso@gmail.com</a></p>
+          <button class="copy" type="button" data-copy="dimgouso@gmail.com"><span class="idle"><span lang="el">Αντιγραφή διεύθυνσης</span><span lang="en">Copy address</span></span><span class="done"><span lang="el">Αντιγράφηκε ✓</span><span lang="en">Copied ✓</span></span></button>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap row">
+    <div><span class="fname"><span lang="el">Δημήτριος Γουσόπουλος</span><span lang="en">Dimitrios Gousopoulos</span></span><br>© 2026 · <span lang="el">Πάντειο Πανεπιστήμιο Κοινωνικών και Πολιτικών Επιστημών</span><span lang="en">Panteion University of Social and Political Sciences</span></div>
+    <ul>
+      <li><a href="https://scholar.google.com/citations?user=qLZJdUYAAAAJ" target="_blank" rel="noopener">Google Scholar</a></li>
+      <li><a href="https://github.com/dimgouso" target="_blank" rel="noopener">GitHub</a></li>
+      <li><a href="cv.pdf">CV</a></li>
+      <li><a href="#contact"><span lang="el">Επικοινωνία</span><span lang="en">Contact</span></a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var d=document.documentElement;
+    var titles={
+      el:'Δημήτριος Γουσόπουλος · Τεχνητή Νοημοσύνη & Ποσοτικές Μέθοδοι',
+      en:'Dimitrios Gousopoulos · Artificial Intelligence & Quantitative Methods'
+    };
+    function save(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+
+    function setLang(l,persist){
+      d.setAttribute('data-lang',l);d.setAttribute('lang',l);
+      document.title=titles[l];
+      document.querySelectorAll('[data-set-lang]').forEach(function(b){
+        b.setAttribute('aria-pressed',b.getAttribute('data-set-lang')===l?'true':'false');
+      });
+      if(persist)save('lang',l);
+    }
+    document.querySelectorAll('[data-set-lang]').forEach(function(b){
+      b.addEventListener('click',function(){setLang(b.getAttribute('data-set-lang'),true)});
+    });
+    setLang(d.getAttribute('data-lang')||'el',false);
+
+    document.getElementById('theme-btn').addEventListener('click',function(){
+      var t=d.getAttribute('data-theme')==='dark'?'light':'dark';
+      d.setAttribute('data-theme',t);save('theme',t);
+    });
+
+    var h=document.querySelector('header.site');
+    var onScroll=function(){h.classList.toggle('scrolled',window.scrollY>8)};
+    window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+    var btn=document.querySelector('.menu-btn'),menu=document.getElementById('menu');
+    btn.addEventListener('click',function(){var o=menu.classList.toggle('open');btn.setAttribute('aria-expanded',o)});
+    menu.addEventListener('click',function(e){if(e.target.closest('a')){menu.classList.remove('open');btn.setAttribute('aria-expanded','false')}});
+
+    document.querySelectorAll('.copy').forEach(function(b){
+      b.addEventListener('click',function(){
+        var t=b.getAttribute('data-copy');
+        var done=function(){b.classList.add('copied');setTimeout(function(){b.classList.remove('copied')},1800)};
+        if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(done,function(){})}
+      });
+    });
+  })();
+</script>
+</body>
+</html>
