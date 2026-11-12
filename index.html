@@ -122,13 +122,13 @@
   /* Animated knowledge-network graphic */
   main{overflow-x:clip}
   .hero{position:relative;isolation:isolate}
-  .hero-web{position:absolute;top:-24px;bottom:-30px;left:69%;right:-60px;width:auto;height:auto;z-index:-1;pointer-events:none;opacity:0;animation:webIn 1.8s ease .3s forwards;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 22%);mask-image:linear-gradient(90deg,transparent 0,#000 22%)}
+  .hero-web{position:absolute;top:-24px;left:66%;width:calc(34% + 60px);height:calc(100% + 88px);z-index:-1;pointer-events:none;opacity:0;animation:webIn 1.8s ease .3s forwards;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 22%);mask-image:linear-gradient(90deg,transparent 0,#000 22%)}
   .hero-web line{stroke:var(--accent-2);stroke-width:1}
   .hero-web circle{fill:var(--paper);stroke:var(--accent-2);stroke-width:1.2}
   .hero-web circle.solid{fill:var(--accent-2)}
   @keyframes webIn{to{opacity:.9}}
   @keyframes webInSoft{to{opacity:.5}}
-  @media (max-width:920px){.hero-web{left:42%;right:-28px;top:-10px;bottom:auto;height:250px;animation-name:webInSoft}}
+  @media (max-width:920px){.hero-web{left:42%;width:calc(58% + 28px);top:-10px;height:330px;animation-name:webInSoft}}
   @media (prefers-reduced-motion:reduce){.hero-web{animation:none;opacity:.6}}
 
   /* Sections */
@@ -796,21 +796,21 @@
         svg.textContent='';nodes=[];links=[];
         W=svg.clientWidth;H=svg.clientHeight;if(!W||!H)return;
         svg.setAttribute('viewBox','0 0 '+W+' '+H);
-        var n=W<520?10:17,g=document.createElementNS(NS,'g');svg.appendChild(g);
+        var n=W<520?12:26,g=document.createElementNS(NS,'g');svg.appendChild(g);
         for(var i=0;i<n;i++){
           var a=Math.random()*Math.PI*2,s=.08+Math.random()*.16,solid=Math.random()<.35;
           var c=document.createElementNS(NS,'circle');c.setAttribute('r',solid?4.2:2.8);if(solid)c.setAttribute('class','solid');
-          nodes.push({x:Math.random()*W,y:Math.random()*H,vx:Math.cos(a)*s,vy:Math.sin(a)*s,el:c});
+          nodes.push({x:Math.random()*W,y:(i+Math.random())/n*H,vx:Math.cos(a)*s,vy:Math.sin(a)*s,el:c});
         }
         for(var i=0;i<n;i++)for(var j=i+1;j<n;j++){var l=document.createElementNS(NS,'line');g.appendChild(l);links.push({a:nodes[i],b:nodes[j],el:l})}
         nodes.forEach(function(p){svg.appendChild(p.el)});
         draw();
       }
       function draw(){
-        var D=Math.max(140,Math.min(W,H)*.42);
+        var D=Math.max(150,Math.min(W*.8,H*.34));
         nodes.forEach(function(p){p.el.setAttribute('cx',p.x.toFixed(1));p.el.setAttribute('cy',p.y.toFixed(1))});
         links.forEach(function(k){
-          var dx=k.a.x-k.b.x,dy=k.a.y-k.b.y,d=Math.sqrt(dx*dx+dy*dy),o=d<D?Math.pow(1-d/D,1.6)*.6:0;
+          var dx=k.a.x-k.b.x,dy=k.a.y-k.b.y,d=Math.sqrt(dx*dx+dy*dy),o=d<D?Math.pow(1-d/D,1.4)*.75:0;
           k.el.setAttribute('x1',k.a.x.toFixed(1));k.el.setAttribute('y1',k.a.y.toFixed(1));
           k.el.setAttribute('x2',k.b.x.toFixed(1));k.el.setAttribute('y2',k.b.y.toFixed(1));
           k.el.setAttribute('stroke-opacity',o.toFixed(3));
