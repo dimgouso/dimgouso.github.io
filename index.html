@@ -231,9 +231,13 @@
   }
   @media (max-width:430px){
     .wrap{padding:0 20px}
-    .brand{font-size:1rem}
+    .bar{gap:10px}
+    .brand{font-size:.95rem;min-width:0;overflow:hidden;text-overflow:ellipsis}
     .brand i{display:none}
-    .toggles{gap:6px}
+    .toggles{gap:5px;flex-shrink:0}
+    .seg button{padding:4px 7px}
+    .icon-btn{width:30px;height:30px}
+    .menu-btn{padding:5px 10px}
   }
   @media print{
     header.site,.menu-btn,.copy,.skip{display:none}
@@ -279,13 +283,12 @@
     <section class="hero">
       <div>
         <p class="kicker"><span lang="el">Τεχνητή Νοημοσύνη & Ποσοτικές Μέθοδοι · Πάντειο Πανεπιστήμιο</span><span lang="en">Artificial Intelligence & Quantitative Methods · Panteion University</span></p>
-        <h1 lang="el">Τεχνητή Νοημοσύνη για τη <em>μάθηση.</em> Δεδομένα για τις αποφάσεις.</h1>
-        <h1 lang="en">Artificial Intelligence for <em>learning.</em> Data for decisions.</h1>
-        <p class="lede" lang="el">Είμαι μεταδιδακτορικός ερευνητής στην Τεχνητή Νοημοσύνη και τις Ποσοτικές Μεθόδους στο Πάντειο Πανεπιστήμιο και διδάσκων στο ΠΜΣ <a href="https://digi-dcl.com" target="_blank" rel="noopener">Digital Transformation (Digi-DCL)</a>. Η δουλειά μου συνδέει συστήματα βασισμένα σε LLMs, την εκπαιδευτική τεχνολογία και τον ψηφιακό μετασχηματισμό με τη Στατιστική, την Πληροφορική και την ανάλυση δεδομένων.</p>
-        <p class="lede" lang="en">I am a postdoctoral researcher in Artificial Intelligence and Quantitative Methods at Panteion University and an instructor in the MA in <a href="https://digi-dcl.com" target="_blank" rel="noopener">Digital Transformation (Digi-DCL)</a>. My work connects LLM-based systems, educational technology and digital transformation with statistics, computer science and data analysis.</p>
+        <h1 lang="el">Τεχνητή Νοημοσύνη και <em>δεδομένα</em> στην εκπαίδευση και την έρευνα.</h1>
+        <h1 lang="en">Artificial Intelligence and <em>data</em> in education and research.</h1>
+        <p class="lede" lang="el">Είμαι μεταδιδακτορικός ερευνητής στο Πάντειο Πανεπιστήμιο, με αντικείμενο την Τεχνητή Νοημοσύνη και τις Ποσοτικές Μεθόδους, και διδάσκων στα Προγράμματα Μεταπτυχιακών Σπουδών «Οικονομική Επιστήμη» και Digital Transformation (Digi-DCL). Ερευνώ πώς οι ψηφιακές τεχνολογίες μπορούν να υποστηρίξουν τη μάθηση και την επιστημονική εργασία. Συνδυάζω τη στατιστική ανάλυση με την ανάπτυξη εφαρμογών Τεχνητής Νοημοσύνης, με στόχο την κατανόηση σύνθετων προβλημάτων και την τεκμηριωμένη λήψη αποφάσεων.</p>
+        <p class="lede" lang="en">I am a postdoctoral researcher at Panteion University, working on Artificial Intelligence and Quantitative Methods, and I teach in the postgraduate programmes in Economic Science and Digital Transformation (Digi-DCL). I study how digital technologies can support learning and scientific work. I combine statistical analysis with the development of Artificial Intelligence applications, with the aim of understanding complex problems and supporting evidence-based decision-making.</p>
         <div class="actions">
           <a class="btn primary" href="#cv"><span lang="el">Σπουδές</span><span lang="en">Education</span></a>
-          <a class="btn ghost" href="cv.pdf"><span lang="el">Βιογραφικό (PDF)</span><span lang="en">CV (PDF)</span></a>
         </div>
         <ul class="profiles">
           <li><a href="https://scholar.google.com/citations?user=qLZJdUYAAAAJ" target="_blank" rel="noopener">Google Scholar ↗</a></li>
@@ -649,7 +652,7 @@
       <div class="shead">
         <div class="num">05 <b><span lang="el">Σπουδές</span><span lang="en">Education</span></b></div>
         <h2><span lang="el">Σπουδές</span><span lang="en">Education</span></h2>
-        <a class="more" href="cv.pdf"><span lang="el">Βιογραφικό (PDF)</span><span lang="en">CV (PDF)</span> →</a>
+        <span></span>
       </div>
       <div class="body">
         <p class="subhead"><span lang="el">Σπουδές</span><span lang="en">Education</span></p>
@@ -722,7 +725,6 @@
     <ul>
       <li><a href="https://scholar.google.com/citations?user=qLZJdUYAAAAJ" target="_blank" rel="noopener">Google Scholar</a></li>
       <li><a href="https://github.com/dimgouso" target="_blank" rel="noopener">GitHub</a></li>
-      <li><a href="cv.pdf">CV</a></li>
       <li><a href="#contact"><span lang="el">Επικοινωνία</span><span lang="en">Contact</span></a></li>
     </ul>
   </div>
