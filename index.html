@@ -153,6 +153,8 @@
   .entry{display:grid;grid-template-columns:150px minmax(0,1fr);gap:24px;padding:22px 0;border-bottom:1px solid var(--rule)}
   .entry:last-child{border-bottom:none}
   .date{font-family:var(--mono);font-size:.8rem;color:var(--ink-3);padding-top:5px;letter-spacing:.02em}
+  .date:has(.now){color:var(--accent);font-weight:500}
+  .now{display:inline-block;margin-left:2px;padding:0 8px;border-radius:999px;background:var(--accent);color:var(--paper);font-weight:500;letter-spacing:.03em;line-height:1.55}
   .meta{color:var(--ink-2);font-size:.95rem;margin:0}
   .meta + .meta{margin-top:4px}
   .tag{display:inline-block;font-family:var(--mono);font-size:.72rem;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);border:1px solid color-mix(in srgb,var(--accent) 35%,transparent);border-radius:999px;padding:1px 9px;margin-left:8px;vertical-align:2px}
@@ -359,11 +361,11 @@
       </div>
       <div class="body">
         <ul class="entries">
-          <li class="entry"><div class="date">2026 – <span lang="el">σήμερα</span><span lang="en">present</span></div><div>
+          <li class="entry"><div class="date">2026 – <span class="now"><span lang="el">σήμερα</span><span lang="en">present</span></span></div><div>
             <h3><span lang="el">Ποσοτικές Μέθοδοι</span><span lang="en">Quantitative Methods</span> <span class="tag"><span lang="el">ΠΜΣ</span><span lang="en">MA</span></span></h3>
             <p class="meta"><span lang="el">ΠΜΣ «Οικονομική Επιστήμη», Τμήμα Δημόσιας Διοίκησης, Πάντειο Πανεπιστήμιο · συνδιδασκαλία</span><span lang="en">MA in Economic Science, Department of Public Administration, Panteion University · co-taught</span></p>
           </div></li>
-          <li class="entry"><div class="date">2024 – <span lang="el">σήμερα</span><span lang="en">present</span></div><div>
+          <li class="entry"><div class="date">2024 – <span class="now"><span lang="el">σήμερα</span><span lang="en">present</span></span></div><div>
             <h3>Artificial Intelligence: the driving force behind Economy 4.0 <span class="tag"><span lang="el">ΠΜΣ</span><span lang="en">MA</span></span></h3>
             <p class="meta"><span lang="el">Μάθημα Economy 4.0 και Bootcamp: Intro to the Digital Era & Research Methods</span><span lang="en">Course Economy 4.0 and Bootcamp: Intro to the Digital Era & Research Methods</span></p>
             <p class="meta"><span lang="el">Διατμηματικό ΠΜΣ Digital Transformation: e-Diplomacy, e-Campaigning and Digital Law (Digi-DCL), Πάντειο Πανεπιστήμιο</span><span lang="en">Inter-departmental MA Digital Transformation: e-Diplomacy, e-Campaigning and Digital Law (Digi-DCL), Panteion University</span></p>
@@ -676,7 +678,7 @@
       <div class="body">
         <p class="subhead"><span lang="el">Σπουδές</span><span lang="en">Education</span></p>
         <ul class="entries">
-          <li class="entry"><div class="date">2025 – <span lang="el">σήμερα</span><span lang="en">present</span></div><div>
+          <li class="entry"><div class="date">2025 – <span class="now"><span lang="el">σήμερα</span><span lang="en">present</span></span></div><div>
             <h3><span lang="el">Μεταδιδακτορική έρευνα στην Τεχνητή Νοημοσύνη και τις Ποσοτικές Μεθόδους</span><span lang="en">Postdoctoral research in Artificial Intelligence and Quantitative Methods</span></h3>
             <p class="meta"><span lang="el">Πάντειο Πανεπιστήμιο Κοινωνικών και Πολιτικών Επιστημών</span><span lang="en">Panteion University of Social and Political Sciences</span></p>
             <p class="meta"><span lang="el">«Ανάπτυξη και εφαρμογή στατιστικών και οικονομετρικών μοντέλων στην εκπαίδευση στελεχών οργανισμών και επιχειρήσεων στις τεχνολογίες Τεχνητής Νοημοσύνης»</span><span lang="en">“Development and application of statistical and econometric models in training executives of organisations and businesses in Artificial Intelligence technologies”</span></p>
